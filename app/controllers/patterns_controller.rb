@@ -6,10 +6,6 @@ class PatternsController < ApplicationController
     @patterns = Pattern.all
   end
 
-  # GET /patterns/1 or /patterns/1.json
-  def show
-  end
-
   # GET /patterns/new
   def new
     @pattern = Pattern.new
@@ -39,7 +35,7 @@ class PatternsController < ApplicationController
     respond_to do |format|
       if @pattern.update(pattern_params)
         format.html { redirect_to @pattern, notice: "Pattern was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @pattern }
+        format.json { render :edit, status: :ok, location: @pattern }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @pattern.errors, status: :unprocessable_entity }
