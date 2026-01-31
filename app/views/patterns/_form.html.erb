@@ -1,0 +1,62 @@
+<%= form_with(model: pattern, class: "contents") do |form| %>
+  <% if pattern.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(pattern.errors.count, "error") %> prohibited this pattern from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% pattern.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :regex %>
+    <%= form.text_field :regex, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:regex].none?, "border-red-400 focus:outline-red-600": pattern.errors[:regex].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :comment %>
+    <%= form.textarea :comment, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:comment].none?, "border-red-400 focus:outline-red-600": pattern.errors[:comment].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :posi_sample %>
+    <%= form.textarea :posi_sample, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:posi_sample].none?, "border-red-400 focus:outline-red-600": pattern.errors[:posi_sample].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :nega_sample %>
+    <%= form.textarea :nega_sample, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:nega_sample].none?, "border-red-400 focus:outline-red-600": pattern.errors[:nega_sample].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :hit_count %>
+    <%= form.number_field :hit_count, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:hit_count].none?, "border-red-400 focus:outline-red-600": pattern.errors[:hit_count].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :display_name %>
+    <%= form.text_field :display_name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:display_name].none?, "border-red-400 focus:outline-red-600": pattern.errors[:display_name].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :memorandum %>
+    <%= form.textarea :memorandum, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:memorandum].none?, "border-red-400 focus:outline-red-600": pattern.errors[:memorandum].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :category %>
+    <%= form.number_field :category, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:category].none?, "border-red-400 focus:outline-red-600": pattern.errors[:category].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :redos_status %>
+    <%= form.number_field :redos_status, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": pattern.errors[:redos_status].none?, "border-red-400 focus:outline-red-600": pattern.errors[:redos_status].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

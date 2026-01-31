@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  regex: MyString
+  comment: MyText
+  posi_sample: MyText
+  nega_sample: MyText
+  hit_count: 1
+  display_name: MyString
+  memorandum: MyText
+  category: 1
+  redos_status: 1
+
+two:
+  regex: MyString
+  comment: MyText
+  posi_sample: MyText
+  nega_sample: MyText
+  hit_count: 1
+  display_name: MyString
+  memorandum: MyText
+  category: 1
+  redos_status: 1
