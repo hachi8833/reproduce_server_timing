@@ -66,3 +66,29 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# MyConfig
+
+gem "google-analytics-rails"
+gem "meta-tags", require: "meta_tags"
+
+gem "enum_help"
+gem "inline_svg"
+gem "pagy"
+gem "rack-attack"
+gem "ransack"
+gem "rinku"
+gem "view_component"
+group :development, :test do
+  # gem "bullet"
+  gem "lookbook" 
+  gem "rubocop-erb", require: false
+  gem "rubocop-minitest", require: false
+  gem "rubocop-performance", require: false
+  gem "sitemap_generator"
+end
+
+group :development do
+  gem "rails_live_reload"
+  gem "rack-mini-profiler"
+end
