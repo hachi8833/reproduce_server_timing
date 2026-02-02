@@ -1,0 +1,59 @@
+# Disable automatic tool installation from version files
+[settings]
+idiomatic_version_file_enable_tools = []
+
+[tools]
+node = "lts"
+heroku = "latest"
+
+[env]
+HEROKU_APP = "enno-hachi"
+RUBY_YJIT_ENABLE = "0"
+RUBY_ZJIT_ENABLE = "1"
+
+[tasks.setup]
+description = "Install development dependencies"
+run = [
+  "mise install -y",
+  "touch tmp/caching-dev.txt",
+  "gem install erb-formatter",
+  "npm install -g rustywind",
+  "npm install -g oxlint",
+  "mkdir -p .localhost",
+  "cd .localhost && mkcert -install && mkcert localhost",
+  "rm -rf tmp/go_recheck",
+  "git clone https://github.com/hachi8833/go_recheck.git tmp/go_recheck",
+  "cd tmp/go_recheck && npm install && go build -o gorecheck",
+  "mkdir -p vendor/bin",
+  "mv tmp/go_recheck/gorecheck vendor/bin/",
+  "rm -rf tmp/go_recheck"
+]
+
+[tasks.test]
+description = "Run Rails tests"
+run = "bin/rails test"
+
+[tasks.lint]
+description = "Run linters and formatters"
+run = [
+  "npx oxlint@latest app/javascript app/components",
+  "erb-format app/views/**/*.html.erb --write",
+  "rustywind --write app/views/",
+  "bin/rubocop -a",
+  "bin/brakeman",
+]
+
+[tasks.format]
+description = "Format ERB and sort Tailwind classes"
+run = [
+  "erb-format app/views/**/*.html.erb --write",
+  "rustywind --write app/views/"
+]
+
+[tasks.rubocop]
+description = "Run RuboCop with auto-correct"
+run = "bin/rubocop -a"
+
+[tasks.brakeman]
+description = "Run Brakeman security scanner"
+run = "bin/brakeman"
